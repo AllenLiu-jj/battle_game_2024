@@ -12,3 +12,6 @@ foreach (header ${HEADERS})
 endforeach ()
 
 target_include_directories(${lib_name} PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+file(APPEND ${UNITS_HEADER_FILE} "#include \"battle_game/core/units/speedy_tank.h\"\n")
+
+target_include_directories(${lib_name} PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
