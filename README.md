@@ -122,4 +122,4 @@ PR 和 Issue 的范例参考：
 
 [https://github.com/Yao-class-cpp-studio/battle_game_2024/issues/2](https://github.com/Yao-class-cpp-studio/battle_game_2024/issues/2)
 
-Thanks for reading! (NBCS)
+Thanks for reading! (NBCS) waiting for winter vacation
