@@ -10,6 +10,11 @@ class Unit : public Object {
  public:
   Unit(GameCore *game_core, uint32_t id, uint32_t player_id);
 
+  //new
+  float shield_;             // shield
+  float max_shield_;         // max
+  float shield_regen_rate_;  // recharge
+
   uint32_t &GetPlayerId() {
     return player_id_;
   }
@@ -57,6 +62,12 @@ class Unit : public Object {
   void ShowLifeBar();
   void HideLifeBar();
   virtual void RenderLifeBar();
+
+  //shield implementation function
+  void InitializeShield(float max_shield, float regen_rate);
+  void RechargeShield(float delta_time);
+  void TakeDamage(float damage);
+
 
   /*
    * This virtual function is used to render some extra helpers, such as

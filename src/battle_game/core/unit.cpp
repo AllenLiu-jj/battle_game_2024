@@ -27,6 +27,33 @@ Unit::Unit(GameCore *game_core, uint32_t id, uint32_t player_id)
   }
 }
 
+//sheild implementation
+void Unit::InitializeShield(float max_shield, float regen_rate) {
+  shield_ = max_shield;
+  max_shield_ = max_shield;
+  shield_regen_rate_ = regen_rate;
+}
+
+void Unit::RechargeShield(float delta_time) {
+  shield_ = std::min(shield_ + shield_regen_rate_ * delta_time, max_shield_);
+}
+
+void Unit::TakeDamage(float damage) {
+  if (shield_ > 0) {
+    if (damage < shield_) {
+      shield_ -= damage;
+    } else {
+      damage -= shield_;
+      shield_ = 0;
+    }
+  }
+  health_ -= damage;
+  if (health_ < 0) {
+    health_ = 0;
+  }
+}
+
+
 void Unit::SetPosition(glm::vec2 position) {
   position_ = position;
 }

@@ -8,6 +8,7 @@ namespace battle_game::unit {
 
 SpeedyTank::SpeedyTank(GameCore *game_core, uint32_t id, uint32_t player_id)
     : Unit(game_core, id, player_id) {
+   InitializeShield(150.0f, 5.0f);
 }
 
 void SpeedyTank::Render() {
@@ -21,6 +22,7 @@ void SpeedyTank::Update() {
   TankMove(5.0f, glm::radians(360.0f));  //higher speed
   TurretRotate();
   Fire();
+  RechargeShield(kSecondPerTick);  // Restore shield every frame
 }
 
 void SpeedyTank::TankMove(float move_speed, float rotate_angular_speed) {
@@ -78,7 +80,7 @@ void SpeedyTank::Fire() {
         GenerateBullet<bullet::CannonBall>(
             position_ + Rotate({0.0f, 1.2f}, turret_rotation_),
             turret_rotation_, GetDamageScale(), velocity);
-        fire_count_down_ = kTickPerSecond / 2;  // 更快的射击速度
+        fire_count_down_ = kTickPerSecond / 2;  // faster
       }
     }
   }
